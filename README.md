@@ -148,6 +148,7 @@ public class CompletableFutureUtils {
 	private static Function<Object[], Object> invokeMethod(Method method, Object target) {
 		return v -> {
 			try {
+				method.setAccessible(true);
 				return method.invoke(target, v);
 			} catch (IllegalAccessException | InvocationTargetException e) {
 				throw new IllegalStateException(e);
